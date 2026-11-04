@@ -2,11 +2,11 @@ import { motion, type HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
 import flowers from "@/assets/flowers-border.png";
 
-export function Reveal({ children, delay = 0, y = 24, className, ...rest }: { children: ReactNode; delay?: number; y?: number } & HTMLMotionProps<"div">) {
+export function Reveal({ children, delay = 0, y = 24, x = 0, className, ...rest }: { children: ReactNode; delay?: number; y?: number; x?: number } & HTMLMotionProps<"div">) {
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y, x }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}

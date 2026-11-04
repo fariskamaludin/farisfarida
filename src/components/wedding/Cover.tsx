@@ -10,7 +10,7 @@ export function Cover({ guest, onOpen }: { guest: string; onOpen: () => void }) 
       key="cover"
       exit={{ y: "-100%", opacity: 0.6 }}
       transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
-      className="absolute inset-0 z-40 flex flex-col items-center overflow-hidden paper"
+      className="fixed inset-0 z-40 mx-auto flex max-w-[440px] flex-col items-center overflow-hidden paper sm:inset-y-6 sm:rounded-[2rem] sm:border sm:border-gold/70"
     >
       <img src={mountains} alt="" aria-hidden className="absolute inset-x-0 top-0 h-[55%] w-full object-cover opacity-60" />
       <div className="absolute inset-x-0 top-[35%] h-[25%] fade-to-ivory" />

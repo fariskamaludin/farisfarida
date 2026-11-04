@@ -48,7 +48,7 @@ function Index() {
       <div aria-hidden className="fixed inset-0 -z-10 bg-cover bg-bottom" style={{ backgroundImage: `url(${bg})` }} />
       <div className="mx-auto w-full max-w-[440px] sm:py-6">
         <main className="relative min-h-screen overflow-hidden bg-ivory shadow-card sm:rounded-[2rem] sm:border sm:border-gold/70">
-          <AnimatePresence>{!opened && <div className="fixed inset-0 z-40 mx-auto max-w-[440px] sm:inset-y-6 sm:overflow-hidden sm:rounded-[2rem]"><Cover guest={guest} onOpen={() => setOpened(true)} /></div>}</AnimatePresence>
+          <AnimatePresence>{!opened && <Cover key="cover" guest={guest} onOpen={() => setOpened(true)} />}</AnimatePresence>
           <Hero />
           <Opening />
           <Couple />
