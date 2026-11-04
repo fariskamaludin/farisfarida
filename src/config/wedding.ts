@@ -6,19 +6,19 @@ import groom from "@/assets/groom.jpg";
 
 /** Edit everything about the invitation here. */
 export const wedding = {
-  shortNames: { groom: "Habib", bride: "Adiba" },
-  date: "2026-12-20T08:00:00+07:00",
-  dateLabel: "20 . 12 . 2026",
+  shortNames: { groom: "Faris", bride: "Farida" },
+  date: "2026-12-17T09:00:00+07:00",
+  dateLabel: "17 . 12 . 2026",
   groom: {
-    fullName: "Muhammad Habib Ramadhan",
-    parents: "Putra Pertama dari Bapak H. Ahmad Fauzi & Ibu Siti Rahmawati",
-    instagram: "habibramadhan",
+    fullName: "Moh Faris Kamaludin",
+    parents: "Putra Keempat dari Bapak Achmad & Ibu Casmirah",
+    instagram: "fariskmll",
     photo: groom,
   },
   bride: {
-    fullName: "Adiba Putri Syahila",
-    parents: "Putri Kedua dari Bapak M. Darsono & Ibu Dewi Sudarwati",
-    instagram: "adibasyahila",
+    fullName: "Farida Aryanti",
+    parents: "Putri Pertama dari Bapak Cahya & Ibu Karminah",
+    instagram: "farida.arynti",
     photo: bride,
   },
   quote: {
@@ -28,17 +28,17 @@ export const wedding = {
   events: [
     {
       title: "Akad Nikah",
-      day: "Minggu, 20 Desember 2026",
-      time: "08.00 – 10.00 WIB",
-      place: "Masjid Agung Al-Ikhlas",
+      day: "Kamis, 17 Desember 2026",
+      time: "09.00 – 10.00 WIB",
+      place: "KUA KEC. TAMBORA",
       address: "Jl. Mawar No. 12, Kediri, Jawa Timur",
       maps: "https://maps.google.com/?q=Masjid+Agung+Kediri",
     },
     {
       title: "Resepsi",
-      day: "Minggu, 20 Desember 2026",
+      day: "Kamis, 17 Desember 2026",
       time: "11.00 WIB – Selesai",
-      place: "Gedung Graha Melati",
+      place: "RUMAH",
       address: "Jl. Melati Raya No. 8, Kediri, Jawa Timur",
       maps: "https://maps.google.com/?q=Kediri+Jawa+Timur",
     },
@@ -51,8 +51,8 @@ export const wedding = {
   gallery: [couple1, couple2, couple3, bride, groom, couple2],
   cover: couple1,
   gifts: [
-    { bank: "Bank BCA", number: "1234567890", holder: "Muhammad Habib Ramadhan" },
-    { bank: "DANA", number: "081234567890", holder: "Adiba Putri Syahila" },
+    { bank: "Bank BCA", number: "5990370119", holder: "Moh Faris Kamaludin" },
+    { bank: "Bank BCA", number: "5215175208", holder: "Farida Aryanti" },
   ],
   giftAddress: "Jl. Mawar No. 12, RT 03/RW 05, Kediri, Jawa Timur 64121",
 };
