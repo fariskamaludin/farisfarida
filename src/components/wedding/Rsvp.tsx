@@ -30,11 +30,11 @@ export function Rsvp({ defaultName }: { defaultName: string }) {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(form);
-    if (!parsed.success) return toast.error(parsed.error.issues[0].message);
+    if (!parsed.success) { toast.error(parsed.error.issues[0]?.message ?? "Data tidak valid"); return; }
     setBusy(true);
     const { error } = await supabase.from("rsvps").insert(parsed.data);
     setBusy(false);
-    if (error) return toast.error("Gagal mengirim, coba lagi");
+    if (error) { toast.error("Gagal mengirim, coba lagi"); return; }
     toast.success("Terima kasih atas doa & ucapannya");
     setForm((f) => ({ ...f, message: "" }));
     load();
