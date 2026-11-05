@@ -18,6 +18,7 @@ import { Gift } from "@/components/wedding/Gift";
 import { Rsvp } from "@/components/wedding/Rsvp";
 import { Closing } from "@/components/wedding/Closing";
 import { Petals } from "@/components/wedding/Petals";
+import { StackCard } from "@/components/wedding/StackCard";
 
 const title = `The Wedding of ${wedding.shortNames.groom} & ${wedding.shortNames.bride}`;
 
@@ -70,19 +71,39 @@ function Index() {
       {/* fixed decorative background */}
       <div aria-hidden className="fixed inset-0 -z-10 bg-cover bg-bottom" style={{ backgroundImage: `url(${bg})` }} />
       <div className="mx-auto w-full max-w-[440px] sm:py-6">
-        <main className="relative min-h-screen overflow-hidden bg-ivory shadow-card sm:rounded-[2rem] sm:border sm:border-gold/70">
+        <main className="relative min-h-screen overflow-clip bg-ivory shadow-card sm:rounded-[2rem] sm:border sm:border-gold/70">
           <AnimatePresence>{!opened && <Cover key="cover" guest={guest} onOpen={handleOpen} />}</AnimatePresence>
-          <Hero />
-          <Opening />
-          <Couple />
-          <Countdown />
-          <Events />
-          <LoveStory />
-          <Gallery />
-          <Gift />
-          <Rsvp key={guest} defaultName={guest === DEFAULT_GUEST ? "" : guest} />
-          <Closing />
-          <footer className="py-6 text-center text-[10px] tracking-widest text-muted-foreground">Made with love 🌸</footer>
+          <StackCard index={0}>
+            <Hero />
+          </StackCard>
+          <StackCard index={1}>
+            <Opening />
+          </StackCard>
+          <StackCard index={2}>
+            <Couple />
+          </StackCard>
+          <StackCard index={3}>
+            <Countdown />
+          </StackCard>
+          <StackCard index={4}>
+            <Events />
+          </StackCard>
+          <StackCard index={5}>
+            <LoveStory />
+          </StackCard>
+          <StackCard index={6}>
+            <Gallery />
+          </StackCard>
+          <StackCard index={7}>
+            <Gift />
+          </StackCard>
+          <StackCard index={8}>
+            <Rsvp key={guest} defaultName={guest === DEFAULT_GUEST ? "" : guest} />
+          </StackCard>
+          <StackCard index={9} last>
+            <><Closing />
+            <footer className="py-6 text-center text-[10px] tracking-widest text-muted-foreground">Made with love 🌸</footer></>
+          </StackCard>
         </main>
       </div>
       {opened && <Petals count={12} />}
