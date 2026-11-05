@@ -17,7 +17,7 @@ type Wish = { id: string; name: string; attendance: string; message: string; cre
 const label: Record<string, string> = { hadir: "Hadir", tidak: "Tidak Hadir", ragu: "Masih Ragu" };
 
 export function Rsvp({ defaultName }: { defaultName: string }) {
-  const [form, setForm] = useState({ name: defaultName === "Tamu Undangan" ? "" : defaultName, attendance: "hadir", guests: 1, message: "" });
+  const [form, setForm] = useState({ name: defaultName, attendance: "hadir", guests: 1, message: "" });
   const [wishes, setWishes] = useState<Wish[]>([]);
   const [busy, setBusy] = useState(false);
 
