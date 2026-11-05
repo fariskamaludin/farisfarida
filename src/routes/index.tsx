@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { z } from "zod";
+import { useEffect, useRef, useState } from "react";
+import { FlyingBirds } from "@/components/wedding/FlyingBirds";
+import { MusicButton, playMusic } from "@/components/wedding/BackgroundMusic";
+
+const DEFAULT_GUEST = "Valued Guest";
 import bg from "@/assets/bg-floral.jpg";
 import { wedding } from "@/config/wedding";
 import { Cover } from "@/components/wedding/Cover";
@@ -19,7 +22,6 @@ import { Petals } from "@/components/wedding/Petals";
 const title = `The Wedding of ${wedding.shortNames.groom} & ${wedding.shortNames.bride}`;
 
 export const Route = createFileRoute("/")({
-  validateSearch: z.object({ to: z.string().max(60).optional() }),
   head: () => ({
     meta: [
       { title },
@@ -34,13 +36,34 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { to } = Route.useSearch();
-  const guest = to?.trim() || "Tamu Undangan";
+  const [guest, setGuest] = useState(DEFAULT_GUEST);
   const [opened, setOpened] = useState(false);
+  const [birds, setBirds] = useState(false);
+  const opening = useRef(false);
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => {
+    // URLSearchParams decodes %20 etc.; rendered as plain text by React (no HTML injection).
+    const raw = new URLSearchParams(window.location.search).get("to");
+    const name = raw?.trim().slice(0, 80);
+    if (name) setGuest(name);
+    return () => clearTimeout(timer.current);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = opened ? "" : "hidden";
   }, [opened]);
+
+  const handleOpen = () => {
+    if (opening.current) return;
+    opening.current = true;
+    playMusic(); // inside the click gesture so iOS/Android allow it
+    setBirds(true);
+    timer.current = setTimeout(() => {
+      setOpened(true);
+      timer.current = setTimeout(() => setBirds(false), 1500);
+    }, 1100);
+  };
 
   return (
     <div className="relative min-h-screen">
@@ -48,7 +71,7 @@ function Index() {
       <div aria-hidden className="fixed inset-0 -z-10 bg-cover bg-bottom" style={{ backgroundImage: `url(${bg})` }} />
       <div className="mx-auto w-full max-w-[440px] sm:py-6">
         <main className="relative min-h-screen overflow-hidden bg-ivory shadow-card sm:rounded-[2rem] sm:border sm:border-gold/70">
-          <AnimatePresence>{!opened && <Cover key="cover" guest={guest} onOpen={() => setOpened(true)} />}</AnimatePresence>
+          <AnimatePresence>{!opened && <Cover key="cover" guest={guest} onOpen={handleOpen} />}</AnimatePresence>
           <Hero />
           <Opening />
           <Couple />
@@ -57,12 +80,14 @@ function Index() {
           <LoveStory />
           <Gallery />
           <Gift />
-          <Rsvp defaultName={guest} />
+          <Rsvp key={guest} defaultName={guest === DEFAULT_GUEST ? "" : guest} />
           <Closing />
           <footer className="py-6 text-center text-[10px] tracking-widest text-muted-foreground">Made with love 🌸</footer>
         </main>
       </div>
       {opened && <Petals count={12} />}
+      {birds && <FlyingBirds />}
+      {opened && <MusicButton />}
     </div>
   );
 }

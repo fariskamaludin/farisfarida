@@ -33,7 +33,7 @@ export function Cover({ guest, onOpen }: { guest: string; onOpen: () => void }) 
           {wedding.dateLabel}
         </motion.p>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.3 }} className="mt-6">
-          <p className="text-[11px] tracking-widest text-muted-foreground">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+          <p className="text-[11px] tracking-[0.3em] text-muted-foreground">DEAR</p>
           <p className="mt-1 font-serif text-2xl font-semibold text-cocoa">{guest}</p>
         </motion.div>
         <motion.button
