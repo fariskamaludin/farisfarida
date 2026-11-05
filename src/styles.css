@@ -132,6 +132,15 @@
 @keyframes sway { 0%,100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
 @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.12); } }
 
+@keyframes bird-fly {
+  0% { transform: translate3d(0, 0, 0) scale(0.4) rotate(0deg); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translate3d(var(--bx), var(--by), 0) scale(1.15) rotate(var(--rot)); opacity: 1; }
+}
+@keyframes bird-flap { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(-0.55); } }
+.bird-fly { opacity: 0; animation: bird-fly ease-in forwards; }
+.bird-flap { transform-origin: 30px 18px; animation: bird-flap ease-in-out infinite; }
+
 @utility animate-fall { animation: fall linear infinite; }
 @utility animate-sway { animation: sway 7s ease-in-out infinite; transform-origin: bottom center; }
 @utility animate-kenburns { animation: kenburns 18s ease-in-out infinite alternate; }
